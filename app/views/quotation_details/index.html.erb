@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Quotation details</h1>
+
+<div id="quotation_details">
+  <% @quotation_details.each do |quotation_detail| %>
+    <%= render quotation_detail %>
+    <p>
+      <%= link_to "Show this quotation detail", quotation_detail %>
+    </p>
+  <% end %>
+</div>
+
+

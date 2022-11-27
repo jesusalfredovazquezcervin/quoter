@@ -1,0 +1,55 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Form<small> that show the contact data.</small></h5>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group">
+            <div class="form-group">
+              <h4>Code:</h4>
+              <div class="col-sm-5">
+                <%= @contact.try(:code) %>
+              </div><br>
+              <h4>Full name:</h4>
+              <div class="col-sm-5">
+                <%= @contact.fullName%>
+              </div><br>
+              <h4>From customer:</h4>
+              <div class="col-sm-5">
+                <%= Customer.find(@contact.customer_id).fullName%>
+              </div><br>
+              <h4>Email:</h4>
+              <div class="col-sm-5">
+                <%= @contact.email%>
+              </div><br>
+              <h4>Phone number:</h4>
+              <div class="col-sm-5">
+                <%= @contact.phoneNumber%>
+              </div><br>
+            </div>
+            <br>
+            <div class="hr-line-dashed"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-2">
+              <a href="<%= url_for contacts_path %>">
+                <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Contacts</button>
+              </a>
+              <a href="<%= url_for edit_contact_path(@contact) %>">
+                <button class="btn btn-outline btn-success btn-rounded" type="button"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+              </a>
+              <a href="<%= url_for new_contact_path %>">
+                <button class="btn btn-outline btn-warning btn-rounded" type="button"><i class="fa fa-plus"></i>&nbsp;New</button>
+              </a>
+            </div>
+          </div>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

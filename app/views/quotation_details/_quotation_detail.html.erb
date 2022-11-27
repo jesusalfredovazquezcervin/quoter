@@ -1,0 +1,75 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Showing<small> detail of a quotation line</small></h5>
+
+        </div>
+        <div class="ibox-content">
+          <div class="form-group">
+            <div class="form-group">
+              <h4>Quotation code:</h4>
+              <div class="col-sm-5">
+                <%= Quotation.find(quotation_detail.quotation_id).code %>
+              </div><br>
+
+              <h4>Product:</h4>
+              <div class="col-sm-5">
+                <%= Good.find(quotation_detail.good_id).materialNumber%>  [<%= Good.find(quotation_detail.good_id).description %>]
+              </div><br>
+
+              <h4>Quantity:</h4>
+              <div class="col-sm-5">
+                <%= quotation_detail.quantity %>
+              </div><br>
+
+              <h4>Lead time:</h4>
+              <div class="col-sm-5">
+                <%= quotation_detail.leadTimeClean %> Days
+              </div><br>
+              <h4>Selling unit:</h4>
+              <div class="col-sm-5">
+                <%= quotation_detail.sellingUnit %>
+              </div><br>
+              <h4>Price:</h4>
+              <div class="col-sm-5">
+                <%= quotation_detail.price_currency %>
+              </div>
+            </div>
+            <br>
+            <div class="hr-line-dashed"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-1">
+              <a href="<%= url_for new_quotation_detail_path(quotation_detail.quotation_id) %>">
+                <button class="btn btn-primary btn-rounded btn-block" type="button"><i class="fa fa-plus"></i>&nbsp Products</button>
+
+              </a>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-1">
+              <a href="<%= url_for quotations_path %>">
+                <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Quotation List</button>
+              </a>
+              <a href="<%= url_for edit_quotation_detail_path(quotation_detail.id) %>">
+                <button class="btn btn-outline btn-success btn-rounded" type="button"><i class="fa fa-pencil"></i>&nbsp;Edit this line</button>
+              </a>
+              <a href="<%= url_for quotation_children_path(quotation_detail.quotation_id) %>">
+                <button class="btn btn-outline btn-warning btn-rounded" type="button"><i class="fa fa-tasks"></i>&nbsp;Quotation children</button>
+              </a>
+            </div>
+          </div>
+          <br><br>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

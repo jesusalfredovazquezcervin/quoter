@@ -1,0 +1,191 @@
+<div class="row">
+  <div class="col-sm-10">
+    <table>
+      <tr>
+        <th width="10%"><%= image_tag wicked_pdf_asset_base64('3mlogo.jpg'), style: {width: "136",  height: "74"} %></th>
+        <th width="10%">
+          <br>
+          <br>
+          <p class="pull-left">
+             <h2><strong>Quote</strong></h2>
+          </p>
+
+        </th>
+        <th width="20%"></th>
+        <th>
+
+        </th>
+        <th>
+
+        </th>
+        <td width="60%" class="col-sm-6 text-right">
+          <h6> <strong>Automotive and Aerospace Solutions Divison</strong></h6>
+          <address>
+            3M Mexico, 190 Av. Santa Fe<br>
+            Santa Fe, Mexico DF, 01201<br>
+            01-800-120-3M-3M<br>
+          </address>
+        </td>
+
+      </tr>
+      <tr>
+        <th><h4><strong>&nbsp;&nbsp;&nbsp;Aerospace</strong></h4></th>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="ibox-content" style="border-color:#868383">
+  <div class="col-sm-10">
+    <table>
+      <tr>
+        <td width="35%">
+          <div class="col-sm-4">
+            <address>
+              To: <strong><%=@quotation.contact.fullName%></strong><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=@quotation.customer.fullName %><br>
+              E-mail: <%=@quotation.contact.email %>
+            </address>
+          </div>
+        </td>
+        <th>
+
+
+        </th>
+        <th width="10%"></th>
+        <th>
+
+        </th>
+        <th>
+
+        </th>
+        <td width="55%" class="text-right">
+          <div class="col-sm-6 text-left" >
+            <address>
+              <strong>Quotation: </strong><%=@quotation.code %><br>
+              <strong>Quote Expires: </strong><%=@quotation.expirationDays %> days<br>
+              <strong>Terms: </strong>Net <%=@quotation.creditDays %><br>
+              <strong>Delivery Term: </strong><%=@quotation.deliveryTerm %><br>
+              <strong>Minimum Order: </strong> <%=@quotation.minimumOrder %> <br>
+              <strong>Lead Time: </strong><%=@quotation.leadTime %>
+            </address>
+          </div>
+        </td>
+
+      </tr>
+
+    </table>
+  </div>
+</div>
+<div class="ibox-content" style="border-color:#868383">
+  <br>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Model</th>
+          <th>Description</th>
+          <th>3M ID</th>
+          <th>MOQ</th>
+          <th>Lead Time</th>
+          <th>Selling Unit</th>
+          <th>Price/unit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @children.each do |child| %>
+          <tr>
+            <td>
+              <%=Good.find(child.good_id).materialNumber %>
+            </td>
+            <td>
+              <%=Good.find(child.good_id).description %>
+            </td>
+            <td>
+              62-3189-5309-9
+            </td>
+            <td>
+              <%=child.quantity %>
+            </td>
+            <td>
+              <%=child.leadTimeClean %>
+            </td>
+            <td>
+              <%=child.sellingUnit %>
+            </td>
+            <td>
+              <%=child.price_currency %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <br>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-lg-10">
+    <h6><strong>SPEC: Please provide specification required on PO for CoA.</strong></h6>
+    <h6><strong>*PLEASE INCLUDE THIS QUOTATION IN YOUR ORDER SEND TO CRC.</strong></h6>
+    <br>
+    <h5> <strong>Notes:</strong></h5>
+    <ol>
+      <li><small><strong>Orders should be placed for single units and considering the MOQ and Sales price condition for the mentioned stock number.</strong></small></li>
+      <li><small><strong>Minimum purchase order quantity is $1,500 USD, any amount below this number won't be processed.</strong></small></li>
+      <li><small><strong>3M Mexico reserves the right to reevaluate price it any deviation to the product, packaging, or shipping costs occur.</strong></small></li>
+      <li><small><strong>Lead time is in natural days and stars running upon accepting Purchase Order by 3M.</strong></small></li>
+      <li><small><strong>Once the purchase order is accepted by 3M, there are no cancellations</strong></small></li>
+      <li><small><strong>Prices may change without notice</strong></small></li>
+      <li><small><strong>Prices do not include taxes</strong></small></li>
+      <li><small><strong>3M will only respond to quality problems intrinsic to product performance and user must inform 3M in no more than 60 natural days from invoice date, so user is responsible to verify that the product is compliant before signing the invoice.</strong></small></li>
+      <li><small><strong>If products need to be compliant under a certification, it must be informed in a note in the Purchase Order. No certifications will be.</strong></small></li>
+      <li><small><strong>Credit is according to contract and time starts on invoice date. If there is no specification about the days credit, payment after 30 days must be done,</strong></small></li>
+    </ol>
+  </div>
+</div>
+<br>
+
+
+<div class="row">
+  <div class="col-lg-10">
+
+    <h5><small>Submit order to 3M Mexico Automotive and Aerospace Division Customer Service and to your local 3M Sales Representative.
+      <strong>Also please Cc the following email address to better follow up on your order: </strong><a href="mailto:3msupport.ordenes.mx@mmm.com">3msupport.ordenes.mx@mmm.com</a></small></h5>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <div class="well well-sm">
+      <table class="table table-bordered">
+        <tr>
+          <th>Sales Representative</th>
+          <th>Phone #</th>
+          <th>Email</th>
+        </tr>
+        <tr>
+          <td>Pablo Canseco Matinez</td>
+          <td>55-6194-1601</td>
+          <td><a href="mailto:pcansecomartinez@mmm.com">pcansecomartinez@mmm.com</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript">
+
+      window.print();
+
+  </script>
+
+<% end %>

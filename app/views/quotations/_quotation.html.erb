@@ -1,0 +1,92 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Showing<small> detail of a quotation</small></h5>
+
+        </div>
+        <div class="ibox-content">
+          <div class="form-group">
+            <div class="form-group">
+              <h4>Quotation code:</h4>
+              <div class="col-sm-5">
+                <%= quotation.code %>
+              </div><br>
+
+              <h4>Customer:</h4>
+              <div class="col-sm-5">
+                <%= Customer.find(quotation.customer_id).fullName%>
+              </div><br>
+
+              <h4>Contact:</h4>
+              <div class="col-sm-5">
+                <%= Contact.find(quotation.contact_id).fullName%>
+              </div><br>
+
+              <h4>Sales representative:</h4>
+              <div class="col-sm-5">
+                <%= Consultant.find(quotation.consultant_id).fullName %>
+              </div><br>
+
+              <h4>Quotation date:</h4>
+              <div class="col-sm-5">
+                <%= quotation.quotationDate%>
+              </div><br>
+              <h4>Quote expires:</h4>
+              <div class="col-sm-5">
+                <%= quotation.expirationDays%> Days [<%= quotation.quotationDate + quotation.expirationDays.days %>]
+              </div><br>
+              <h4>Terms (Credit days):</h4>
+              <div class="col-sm-5">
+                <%=quotation.creditDays%> Days [<%= quotation.quotationDate + quotation.creditDays.days %>]
+              </div><br>
+              <h4>Delivery Term:</h4>
+              <div class="col-sm-5">
+                <%=quotation.deliveryTerm%>
+              </div><br>
+              <h4>Minimum order:</h4>
+              <div class="col-sm-5">
+                <%=quotation.minimumOrder%>
+              </div><br>
+              <h4>Lead time:</h4>
+              <div class="col-sm-5">
+                <%=quotation.leadTime%>
+              </div>
+            </div>
+            <br>
+            <div class="hr-line-dashed"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-2">
+              <a href="<%= url_for new_quotation_detail_path(quotation.id) %>">
+                <button class="btn btn-primary btn-rounded btn-block" type="button"><i class="fa fa-tasks"></i>&nbsp;Add Products to Quotation</button>
+
+              </a>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-2">
+              <a href="<%= url_for quotations_path %>">
+                <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;List</button>
+              </a>
+              <a href="<%= url_for edit_quotation_path(quotation) %>">
+                <button class="btn btn-outline btn-success btn-rounded" type="button"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+              </a>
+              <a href="<%= url_for new_quotation_path %>">
+                <button class="btn btn-outline btn-warning btn-rounded" type="button"><i class="fa fa-plus"></i>&nbsp;New</button>
+              </a>
+            </div>
+          </div>
+          <br><br>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,106 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Quotation List</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+      </li>
+      <li>
+        <a>Operations</a>
+      </li>
+      <li class="active">
+        <strong>Quotations</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          &nbsp;<a href="<%= url_for new_quotation_path %>">
+          <button class="btn btn-outline btn-warning btn-rounded" type="button"><i class="fa fa-plus"></i>&nbsp;New</button>
+        </a>
+          <div class="ibox-tools">
+            Total records: <%= @quotations.count %>
+            <a >
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+
+        </div>
+        <div class="ibox-content">
+
+          <table class="table table-striped table-bordered table-hover dataTables-example">
+            <thead>
+            <tr>
+              <th>Code</th>
+              <th>Customer</th>
+              <th>Sales Representative</th>
+              <th>Date</th>
+              <th>Quote expires</th>
+              <th>Terms</th>
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <% @quotations.each do |quotation| %>
+              <tr>
+                <td><%=quotation.code %></td>
+                <td><%=Customer.find(quotation.customer_id).fullName%></td>
+                <td><%=Consultant.find(quotation.consultant_id).fullName%></td>
+                <td><%=quotation.quotationDate%></td>
+                <td><%=quotation.expirationDays%></td>
+                <td><%=quotation.creditDays%></td>
+                <td>
+
+                  <%= link_to quotation, class: 'btn btn-success btn-circle', title: 'Details' do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                  <%= link_to edit_quotation_path(quotation), class: 'btn btn-primary btn-circle', title: 'Edit' do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+
+                  <%= link_to 'D', quotation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-circle', title: "Delete"%>
+
+                  <%= link_to quotation_children_path(quotation.id), class: 'btn btn-warning btn-circle', title: 'Children' do %>
+                    <i class="fa fa-tasks"></i>
+                  <% end %>
+
+
+
+
+                </td>
+              </tr>
+            <% end %>
+
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<% content_for :javascript do %>
+  <script type="text/javascript">
+      $(function() {
+          $('.dataTables-example').dataTable({
+              "order": [[ 1, "desc" ]],
+              "dom": 'T<"clear">lfrtip',
+              "tableTools": {
+                  "sSwfPath": "../assets/dataTables/swf/copy_csv_xls_pdf.swf"
+              }
+          });
+      });
+  </script>
+<% end %>
+
+

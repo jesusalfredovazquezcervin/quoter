@@ -1,0 +1,188 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Form<small> for add or edit a quotation.</small></h5>
+        </div>
+        <div class="ibox-content">
+          <%= form_for(@quotation, class: 'form-horizontal') do |f| %>
+            <% if @quotation.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= @quotation.errors.count %> error(es) no permitieron guardar el registro:</h2>
+                <ul>
+                  <% @quotation.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+
+              <div class="form-group">
+                <%= f.label "Customer", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.select :customer_id, options_for_select(Customer.all.collect { |c|
+                      [c.fullName, c.id] }, @quotation.customer_id), {required: true}, { class: "chosen-select", style: "width:370px;" , required: true} %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label "Contact", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.select :contact_id, options_for_select(Contact.all.collect { |c|
+                      [c.fullName, c.id] }, @quotation.contact_id), {required: true}, { class: "chosen-select", style: "width:370px;" , required: true} %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label "Sales representative", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.select :consultant_id, options_for_select(Consultant.all.collect { |c|
+                      [c.fullName, c.id] }, @quotation.consultant_id), {required: true}, { class: "chosen-select", style: "width:370px;" , required: true} %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+              <div class="form-group">
+                <%= f.label "Quotation Code", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :code, class: 'form-control', :required => true, value: (@quotation.code.nil? ? Date.today.strftime("%Y%m%d") << @quotation.customer_id.to_s << @quotation.consultant_id.to_s: @quotation.code) %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label "Quotation date", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-5">
+                  <div class="col-sm-5">
+                    <%= f.date_field :quotationDate, required: true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+              <div class="form-group">
+                <%= f.label "Quote expires (days to expire)", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.number_field :expirationDays, class: 'form-control', :required => true %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label "Terms (credit days)", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.number_field :creditDays, class: 'form-control', :required => true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label "Delivery Term", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :deliveryTerm, class: 'form-control', :required => true, value: (@quotation.deliveryTerm.nil? ? 'DDP (Mexican Territory)': @quotation.deliveryTerm) %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label "Minimum Order", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :minimumOrder, class: 'form-control', :required => true, value: (@quotation.minimumOrder.nil? ? 'See reference below':@quotation.minimumOrder)%>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+              <div class="form-group">
+                <%= f.label "Lead Time", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :leadTime, class: 'form-control', :required => true, value: (@quotation.leadTime.nil? ? 'See reference below':@quotation.leadTime)%>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                <a href="<%= url_for quotations_path %>">
+                  <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Cancelar</button>
+                </a>
+                <%= button_tag(type: 'submit', class: "btn btn-outline btn-success btn-rounded") do %>
+                  <i class="fa fa-database"></i> Guardar
+                <% end %>
+              </div>
+            </div>
+            <br><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript">
+
+
+      var config = {
+          '.chosen-select'           : {},
+          '.chosen-select-deselect'  : {allow_single_deselect:true},
+          '.chosen-select-no-single' : {disable_search_threshold:10},
+          '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+          '.chosen-select-width'     : {width:"95%"}
+      }
+      for (var selector in config) {
+          $(selector).chosen(config[selector]);
+      }
+
+
+      $('#data_1 .input-group.date').datepicker({
+          todayBtn: "linked",
+          keyboardNavigation: false,
+          forceParse: false,
+          calendarWeeks: true,
+          autoclose: true
+      });
+
+  </script>
+<% end %>
+
+

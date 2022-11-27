@@ -1,0 +1,147 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Quotation - Children </h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+      </li>
+      <li>
+        <a>Operations</a>
+      </li>
+      <li class="active">
+        <strong>Children of a quotation</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <a href="<%= url_for quotations_path%>">
+                  <button class="btn btn-primary pull-right" type="button"><i class="fa fa-arrow-circle-left"></i>&nbsp Back to quotations</button>
+                </a>
+                <h3>Quotation: <%= @quotation.code %> </h3>
+              </div>
+              <dl class="dl-horizontal">
+                <dt>Customer:</dt>
+                <dd><%= Customer.find(@quotation.customer_id).fullName %></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-7">
+              <dl class="dl-horizontal">
+
+                <dt>Sales representative:</dt>
+                <dd><%=Consultant.find(@quotation.consultant_id).fullName %></dd>
+                <dt>Quotation date:</dt>
+                <dd>  <%=@quotation.quotationDate %></dd>
+                <dt>Expires:</dt>
+                <dd><a href="#" class="text-navy"> <%=@quotation.expirationDays%> Days [<%=@quotation.quotationDate + @quotation.expirationDays %>]</a> </dd>
+                <dt>Credit :</dt>
+                <dd> 	<%=@quotation.creditDays %> Days [<%=@quotation.quotationDate + @quotation.creditDays %>]</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <a href="<%= url_for new_quotation_detail_path(@quotation.id) %>">
+                  <button class="btn btn-primary pull-left" type="button"><i class="fa fa-plus"></i>&nbsp Products</button>
+                </a>
+                <a href="<%= url_for quotation_show_pdf_path(@quotation.id) %>">
+                  <button class="btn btn-primary pull-right" type="button"><i class="fa fa-file-pdf-o"></i>&nbsp Generate PDF</button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="row m-t-sm">
+            <div class="col-lg-12">
+              <div class="panel blank-panel">
+                <div class="panel-heading">
+                  <div class="panel-options">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a href="#tab-1" data-toggle="tab">Products in the quotation</a></li>
+
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+
+                  <div class="tab-content">
+
+                    <div class="tab-pane active" id="tab-2">
+
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th>Material</th>
+                          <th>Quantity</th>
+                          <th>Lead time</th>
+                          <th>Selling unit</th>
+                          <th>Price</th>
+                          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% @children.each do |child| %>
+                        <tr>
+                          <td>
+                            <%=Good.find(child.good_id).materialNumber %>
+                          </td>
+                          <td>
+                            <%=child.quantity %>
+                          </td>
+                          <td>
+                            <%=child.leadTimeClean %>
+                          </td>
+                          <td>
+                            <%=child.sellingUnit %>
+                          </td>
+                          <td>
+                            <%=child.price_currency %>
+                          </td>
+                          <td>
+                            <%= link_to quotation_detail_path(child), class: 'btn btn-success btn-circle', title: 'Details' do %>
+                              <i class="fa fa-eye"></i>
+                            <% end %>
+                            <%= link_to edit_quotation_detail_path(child), class: 'btn btn-primary btn-circle', title: 'Edit', target: :_blank do %>
+                              <i class="fa fa-pencil"></i>
+                            <% end %>
+
+                            <%= link_to 'D', child, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-circle', title: "Delete", target: :_blank%></td>
+
+
+                        </tr>
+
+                        <% end %>
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,75 @@
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Form<small> that show the goods data.</small></h5>
+
+        </div>
+        <div class="ibox-content">
+
+          <div class="form-group">
+            <div class="form-group">
+              <h4>Goods (MATNR):</h4>
+              <div class="col-sm-5">
+                <%= good.materialNumber %>
+              </div><br>
+
+              <h4>Selling unit (MEINS):</h4>
+              <div class="col-sm-5">
+                <%= good.category%>
+              </div><br>
+
+              <h4>Name (BG):</h4>
+              <div class="col-sm-5">
+                <%= good.name%>
+              </div><br>
+
+              <h4>Description (MAKTX_EN):</h4>
+              <div class="col-sm-5">
+                <%= good.description%>
+              </div><br>
+              <h4>Profit center:</h4>
+              <div class="col-sm-5">
+                <%= good.profitCenter%>
+              </div><br>
+              <h4>Price (NEW MSP):</h4>
+              <div class="col-sm-5">
+                <%=good.newPrice%>
+              </div><br>
+
+              <h4>Currency:</h4>
+              <div class="col-sm-5">
+                <%=good.currency%>
+              </div>
+            </div>
+            <br>
+            <div class="hr-line-dashed"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-2">
+              <a href="<%= url_for goods_path %>">
+                <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Goods</button>
+              </a>
+              <a href="<%= url_for edit_good_path(good) %>">
+                <button class="btn btn-outline btn-success btn-rounded" type="button"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+              </a>
+              <a href="<%= url_for new_good_path %>">
+                <button class="btn btn-outline btn-warning btn-rounded" type="button"><i class="fa fa-plus"></i>&nbsp;New</button>
+              </a>
+            </div>
+          </div>
+          <br><br>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

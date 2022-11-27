@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quotation: one
+  good: one
+  quantity: 1
+  leadTime: MyString
+  sellingUnit: MyString
+  price: 9.99
+  discount: 9.99
+
+two:
+  quotation: two
+  good: two
+  quantity: 1
+  leadTime: MyString
+  sellingUnit: MyString
+  price: 9.99
+  discount: 9.99

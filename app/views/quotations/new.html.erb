@@ -1,0 +1,18 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Quotation - Add new </h2>
+    <ol class="breadcrumb">
+      <li>
+        <a href="<%= url_for :controller => 'dashboards', :action => 'dashboard_1' %>">Home</a>
+      </li>
+      <li>
+        <a>Operations</a>
+      </li>
+      <li class="active">
+        <strong>Adding New Quotation</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<%= render "form", quotation: @quotation %>

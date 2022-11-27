@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  materialNumber: MyString
+  type: 
+  name: MyString
+  description: MyString
+  profitCenter: MyString
+  newPrice: 9.99
+  newCost: 9.99
+  currency: MyString
+
+two:
+  materialNumber: MyString
+  type: 
+  name: MyString
+  description: MyString
+  profitCenter: MyString
+  newPrice: 9.99
+  newCost: 9.99
+  currency: MyString

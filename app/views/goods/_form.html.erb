@@ -1,0 +1,136 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Form<small> for adding new goods</small></h5>
+        </div>
+        <div class="ibox-content">
+          <%= form_for(@good, class: 'form-horizontal') do |f| %>
+            <% if @good.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= @good.errors.count %> error(es) no permitieron guardar el registro:</h2>
+                <ul>
+                  <% @good.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <div class="form-group">
+                <%= f.label "Material number", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :materialNumber, class: 'form-control', :required => true %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label "Selling unit", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-5">
+                  <div class="col-sm-5">
+                    <%= f.select :category, options_for_select(Good::CATEGORY.collect { |category| [category.to_s] }, @good.category), {}, {class:"chosen-select", style: "width:350px;" } %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label "Name", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.text_field :name, class: 'form-control', :required => true %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label "Description", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.text_field :description, class: 'form-control', :required => true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label "Profit Center", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :profitCenter, class: 'form-control', :required => true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label "Precio", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :newPrice, class: 'form-control', :required => true, :data => {:mask=> '999999.999999', :placeholder =>""}%>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+              <div class="form-group">
+                <%= f.label "Currency", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-5">
+                  <div class="col-sm-5">
+                    <%= f.select :currency, options_for_select(Good::CURRENCY.collect { |moneda| [moneda.to_s] }, @good.currency), {}, {class:"chosen-select", style: "width:350px;" } %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                <a href="<%= url_for goods_path %>">
+                  <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Goods</button>
+                </a>
+                <%= button_tag(type: 'submit', class: "btn btn-outline btn-success btn-rounded") do %>
+                  <i class="fa fa-database"></i> Save
+                <% end %>
+              </div>
+            </div>
+            <br><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript">
+
+
+      var config = {
+          '.chosen-select'           : {},
+          '.chosen-select-deselect'  : {allow_single_deselect:true},
+          '.chosen-select-no-single' : {disable_search_threshold:10},
+          '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+          '.chosen-select-width'     : {width:"95%"}
+      }
+      for (var selector in config) {
+          $(selector).chosen(config[selector]);
+      }
+  </script>
+<% end %>

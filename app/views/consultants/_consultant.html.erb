@@ -1,0 +1,55 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Form<small> that show the consultant data.</small></h5>
+        </div>
+        <div class="ibox-content">
+          <div class="form-group">
+            <div class="form-group">
+              <h4>Code:</h4>
+              <div class="col-sm-5">
+                <%= @consultant.code %>
+              </div><br>
+              <h4>Full name:</h4>
+              <div class="col-sm-5">
+                <%= @consultant.fullName%>
+              </div><br>
+              <h4>Email:</h4>
+              <div class="col-sm-5">
+                <%= @consultant.email%>
+              </div><br>
+              <h4>Phone number:</h4>
+              <div class="col-sm-5">
+                <%= @consultant.phoneNumber%>
+              </div><br>
+              <h4>Role:</h4>
+              <div class="col-sm-5">
+                <%= @consultant.role%>
+              </div><br>
+            </div>
+            <br>
+            <div class="hr-line-dashed"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-2">
+              <a href="<%= url_for consultants_path %>">
+                <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Consultants</button>
+              </a>
+              <a href="<%= url_for edit_consultant_path(@consultant) %>">
+                <button class="btn btn-outline btn-success btn-rounded" type="button"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+              </a>
+              <a href="<%= url_for new_consultant_path %>">
+                <button class="btn btn-outline btn-warning btn-rounded" type="button"><i class="fa fa-plus"></i>&nbsp;New</button>
+              </a>
+            </div>
+          </div>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,112 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Form<small> for adding new customers</small></h5>
+        </div>
+        <div class="ibox-content">
+          <%= form_for(@customer, class: 'form-horizontal') do |f| %>
+            <% if @customer.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= @customer.errors.count %> error(es) no permitieron guardar el registro:</h2>
+                <ul>
+                  <% @customer.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <div class="form-group">
+                <%= f.label :code, class: 'col-sm-2 control-label'%>
+                <div class="col-sm-6">
+                  <div class="col-sm-6">
+                    <%= f.text_field :code, class: 'form-control', :required => true %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label 'Full Name', class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.text_field :fullName, class: 'form-control', :required => true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label :email, class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.text_field :email, class: 'form-control', :required => true %>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                <%= f.label "Phone Number", class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.text_field :phoneNumber, class: 'form-control', :required => true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="hr-line-dashed"></div>
+
+
+              <div class="form-group">
+                <%= f.label :address, class: 'col-sm-2 control-label'%>
+                <div class="col-sm-8">
+                  <div class="col-sm-8">
+                    <%= f.text_area :address, class: 'form-control', :required => true %>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <br>
+              <div class="hr-line-dashed"></div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                <a href="<%= url_for customers_path %>">
+                  <button class="btn btn-outline btn-danger btn-rounded" type="button"><i class="fa fa-list-ol"></i>&nbsp;Customers</button>
+                </a>
+                <%= button_tag(type: 'submit', class: "btn btn-outline btn-success btn-rounded") do %>
+                  <i class="fa fa-database"></i> Save
+                <% end %>
+              </div>
+            </div>
+            <br><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript">
+
+
+      var config = {
+          '.chosen-select'           : {},
+          '.chosen-select-deselect'  : {allow_single_deselect:true},
+          '.chosen-select-no-single' : {disable_search_threshold:10},
+          '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+          '.chosen-select-width'     : {width:"95%"}
+      }
+      for (var selector in config) {
+          $(selector).chosen(config[selector]);
+      }
+  </script>
+<% end %>
