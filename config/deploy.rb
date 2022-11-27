@@ -39,8 +39,8 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :ssh_options, verify_host_key: :secure
 
 set :application, "quoter"
-set :repo_url, "git@github.com:jesusalfredovazquezcervin/quoter.git"
-
+#set :repo_url, "git@github.com:jesusalfredovazquezcervin/quoter.git"
+set :repo_url, "https://github.com/jesusalfredovazquezcervin/quoter.git"
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
 
