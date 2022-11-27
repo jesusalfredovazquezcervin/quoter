@@ -82,7 +82,6 @@ gem 'pg'
 
 gem 'rails-ujs'
 gem 'jquery-rails'
-gem 'turbolinks'
 
 # convert html -> PDF
 gem 'wicked_pdf'
