@@ -1,5 +1,8 @@
 class DashboardsController < ApplicationController
   def dashboard_1
+    if !user_signed_in?
+      render :layout => "empty"
+    end
   end
 
   def dashboard_2
