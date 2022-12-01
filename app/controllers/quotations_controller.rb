@@ -1,4 +1,5 @@
 class QuotationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_quotation, only: %i[ show edit update destroy children show_pdf show_pdf_print]
   # GET /quotations or /quotations.json
   def index

@@ -1,4 +1,5 @@
 class DashboardsController < ApplicationController
+  before_action :authenticate_user!
   def dashboard_1
     if !user_signed_in?
       render :layout => "empty"

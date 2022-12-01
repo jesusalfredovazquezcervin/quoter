@@ -1,4 +1,5 @@
 class QuotationDetailsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_quotation_detail, only: %i[ show edit update destroy]
   before_action :set_quotation, only: %i[new]
 

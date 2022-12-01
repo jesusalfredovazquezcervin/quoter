@@ -1,4 +1,5 @@
 class GoodsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_good, only: %i[ show edit update destroy ]
 
   # GET /goods or /goods.json
