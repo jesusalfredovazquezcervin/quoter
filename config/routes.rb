@@ -11,7 +11,8 @@ Myapp::Application.routes.draw do
 
   get "quotations/children/:id", to: "quotations#children", as: "quotation_children"
   get "quotations/show_pdf/:id", to: "quotations#show_pdf", as: "quotation_show_pdf"
-  devise_for :users
+  #devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   # You can have the root of your site routed with "root"
   root to: 'dashboards#dashboard_1'
