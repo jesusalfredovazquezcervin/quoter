@@ -23,7 +23,7 @@ class ContactsController < ApplicationController
   # POST /contacts or /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
+    @contact.user_id = current_user.id
     respond_to do |format|
       if @contact.save
         format.html { redirect_to contact_url(@contact), notice: "Contact was successfully created." }
@@ -37,6 +37,7 @@ class ContactsController < ApplicationController
 
   # PATCH/PUT /contacts/1 or /contacts/1.json
   def update
+    @contact.user_id = current_user.id
     respond_to do |format|
       if @contact.update(contact_params)
         format.html { redirect_to contact_url(@contact), notice: "Contact was successfully updated." }
@@ -66,6 +67,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:code, :fullName, :email, :phoneNumber, :customer_id)
+      params.require(:contact).permit(:code, :fullName, :email, :phoneNumber, :customer_id, :user_id)
     end
 end

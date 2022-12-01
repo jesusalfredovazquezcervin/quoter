@@ -23,7 +23,7 @@ class ConsultantsController < ApplicationController
   # POST /consultants or /consultants.json
   def create
     @consultant = Consultant.new(consultant_params)
-
+    @consultant.user_id = current_user.id
     respond_to do |format|
       if @consultant.save
         format.html { redirect_to consultant_url(@consultant), notice: "Consultant was successfully created." }
@@ -37,6 +37,7 @@ class ConsultantsController < ApplicationController
 
   # PATCH/PUT /consultants/1 or /consultants/1.json
   def update
+    @consultant.user_id = current_user.id
     respond_to do |format|
       if @consultant.update(consultant_params)
         format.html { redirect_to consultant_url(@consultant), notice: "Consultant was successfully updated." }
@@ -66,6 +67,6 @@ class ConsultantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def consultant_params
-      params.require(:consultant).permit(:code, :fullName, :email, :phoneNumber, :role)
+      params.require(:consultant).permit(:code, :fullName, :email, :phoneNumber, :role, :user_id)
     end
 end

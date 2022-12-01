@@ -23,7 +23,7 @@ class CustomersController < ApplicationController
   # POST /customers or /customers.json
   def create
     @customer = Customer.new(customer_params)
-
+    @customer.user_id = current_user.id
     respond_to do |format|
       if @customer.save
         format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
@@ -37,6 +37,7 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1 or /customers/1.json
   def update
+    @customer.user_id = current_user.id
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
@@ -66,6 +67,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:code, :email, :fullName, :phoneNumber, :address)
+      params.require(:customer).permit(:code, :email, :fullName, :phoneNumber, :address, :user_id)
     end
 end

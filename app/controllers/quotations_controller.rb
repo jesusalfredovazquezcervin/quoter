@@ -22,7 +22,7 @@ class QuotationsController < ApplicationController
   # POST /quotations or /quotations.json
   def create
     @quotation = Quotation.new(quotation_params)
-
+    @quotation.user_id = current_user.id
     respond_to do |format|
       if @quotation.save
         format.html { redirect_to quotation_url(@quotation), notice: "Quotation was successfully created." }
@@ -36,6 +36,7 @@ class QuotationsController < ApplicationController
 
   # PATCH/PUT /quotations/1 or /quotations/1.json
   def update
+    @quotation.user_id = current_user.id
     respond_to do |format|
       if @quotation.update(quotation_params)
         format.html { redirect_to quotation_url(@quotation), notice: "Quotation was successfully updated." }
@@ -90,6 +91,6 @@ class QuotationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quotation_params
-      params.require(:quotation).permit(:code, :quotationDate, :expirationDays, :creditDays, :deliveryTerm, :minimumOrder, :leadTime, :customer_id, :consultant_id, :contact_id)
+      params.require(:quotation).permit(:code, :quotationDate, :expirationDays, :creditDays, :deliveryTerm, :minimumOrder, :leadTime, :customer_id, :consultant_id, :contact_id, :user_id)
     end
 end

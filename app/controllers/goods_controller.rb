@@ -23,7 +23,7 @@ class GoodsController < ApplicationController
   # POST /goods or /goods.json
   def create
     @good = Good.new(good_params)
-
+    @good.user_id = current_user.id
     respond_to do |format|
       if @good.save
         format.html { redirect_to good_url(@good), notice: "Good was successfully created." }
@@ -37,6 +37,7 @@ class GoodsController < ApplicationController
 
   # PATCH/PUT /goods/1 or /goods/1.json
   def update
+    @good.user_id = current_user.id
     respond_to do |format|
       if @good.update(good_params)
         format.html { redirect_to good_url(@good), notice: "Good was successfully updated." }
@@ -66,6 +67,6 @@ class GoodsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def good_params
-      params.require(:good).permit(:materialNumber, :category, :name, :description, :profitCenter, :newPrice, :newCost, :currency)
+      params.require(:good).permit(:materialNumber, :category, :name, :description, :profitCenter, :newPrice, :newCost, :currency, :user_id)
     end
 end
